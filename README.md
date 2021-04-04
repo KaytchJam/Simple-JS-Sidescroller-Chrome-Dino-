@@ -10,9 +10,9 @@ Tried recreating the chrome dinosaur game by memory &amp; with JS canvas. There 
 
 ### Thought Process:
 
-#### Collision Detection
-
 Adding this so that I can go back and understand why I made certain decisions if I ever look back at this. This is also a good way at practicing my explaining skills as a side benefit lol.
+
+#### Collision Detection
 
 ```javascript
 if (player.x + (player.w/2) >= spike.x - spike.w && player.x + player.w/2 <= spike.x + spike.w) { // Conditional 1 & 2
