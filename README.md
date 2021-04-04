@@ -1,7 +1,7 @@
 # Simple JS Sidescroller: Chrome-Dino-
 Tried recreating the chrome dinosaur game by memory &amp; with JS canvas. There are probably way more efficient ways of doing this but it was fun trying to recreate it.
 
-### Task List
+### Task List:
 
 - [x] Added collision between Player, spike, and floor
 - [x] Make spikes speed up over time
