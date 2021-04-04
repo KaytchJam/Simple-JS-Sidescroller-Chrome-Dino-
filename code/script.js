@@ -53,18 +53,18 @@ function drawPlayer() {
 }
 
 function collideDetect() {
-    if (player.y + player.h >= floor.y) {
+    if (player.y + player.h >= floor.y) { // Checks if player is on ground & keeps them grounded
         player.free = false;
         player.y = floor.y - player.h
     }
 
-    if (player.y + player.h < floor.y) {
+    if (player.y + player.h < floor.y) { // Check if the player is in the air
         player.free = true;
     }
 
-    if (player.x + (player.w/2) >= spike.x - spike.w && player.x + player.w/2 <= spike.x + spike.w) {
-        overSpike = true;
-        if (player.y + player.h >= Math.abs((5/4) * (spike.x - (player.x + (player.w/2)))) + spike.y ) {
+    if (player.x + (player.w/2) >= spike.x - spike.w && player.x + player.w/2 <= spike.x + spike.w) { // Check if the player is near a spike
+        //overSpike = true;
+        if (player.y + player.h >= Math.abs((5/4) * (spike.x - (player.x + (player.w/2)))) + spike.y ) { // Check if the player is touching the spike
             hit++;
         }
     } //else { overSpike = false }
@@ -74,7 +74,7 @@ function playerPosition() {
     player.y += player.dy;
 
     if (player.free) {
-        player.dy += player.grav * 1.5 ;
+        player.dy += player.grav * 1.5 ; // Gravity & coefficient of 1.5
     }
 
     collideDetect();
@@ -106,11 +106,11 @@ function moveSpike() {
     }
 }
 
-function clear() {
+function clear() { // Clear canvas every frame
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function playerStats() {
+function playerStats() { // Text for score & Testing / Troubleshooting
     ctx.font = "15px Helvetica"
     //ctx.fillText("Player X: " + (player.x + (player.w/2)), (player.x + player.w/2), 20, 100);
     //ctx.fillText("Player Y: " + (player.y + player.h), 140, 20, 100);
@@ -151,13 +151,13 @@ function update() {
 }
 
 function jump() {
-    if (!player.free) {
+    if (!player.free) { // If the player is not in the air (grounded), they can jump
         player.dy = -player.speed;
     }
 }
 
 function fastFall() {
-    if (player.free) {
+    if (player.free) { // If the player is in the air, they can fast fall
         player.ffall = true;
         player.dy += 20
     }
@@ -165,18 +165,18 @@ function fastFall() {
 
 function keyDown(e) {
     switch (e.key) {
-        case keys[0]:
+        case keys[0]: // Up Arrow
         case keys[1]:
-        case keys[2]:
+        case keys[2]: // Space Bar
             jump();
             break;
-        case keys[3]:
+        case keys[3]: // Down Arrow
         case keys[4]:
             fastFall();
             break;
     }
 
-    if (!start) {
+    if (!start) { // Restart game after a loss
         if (e.key == keys[2]) { 
             start = true;
             spike.x = cvs.width;
@@ -187,7 +187,7 @@ function keyDown(e) {
 }
 
 function keyUp(e) {
-    if (keys.includes(e.key) && player.free) {
+    if (keys.includes(e.key) && player.free) { // Stop upward momentum if the player releases the jump button(s)
         player.dy += 5;
     }
 }
