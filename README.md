@@ -22,7 +22,7 @@ if (player.x + (player.w/2) >= spike.x - spike.w && player.x + player.w/2 <= spi
 }
 ```
 
-The above code is a way of checking how close the player is to the midpoint of a spike obstacle, as well as check the height of the player as compared to the height of the spike at a given point. The first condition of the nested if ` player.x + (player.w / 2) >= spike.x - spike.w` checks if the center of the dinosaur sprite is past the leftmost point of the spike, whereas the second condition ` player.x + (player.w / 2) <= spike.x + spike.w ` checks if the center of the dinosaur sprite isn't past the leftmost point of the spike. 
+The above code is a way of checking how close the player is to the midpoint of a spike obstacle, as well as check the height of the player as compared to the height of the spike at a given point. The first condition of the nested if ` player.x + (player.w / 2) >= spike.x - spike.w` checks if the center of the dinosaur sprite is past the leftmost point of the spike, whereas the second condition ` player.x + (player.w / 2) <= spike.x + spike.w ` checks if the center of the dinosaur sprite isn't past the rightmost point of the spike. 
 
 ![Diagram of Conditional 1 & 2](https://github.com/KaytchJam/Simple-JS-Sidescroller-Chrome-Dino-/blob/main/readme-assets/poorlydrawndiagram.png?raw=true)
 
