@@ -9,6 +9,7 @@ canvas.height = 400;
 centerX = canvas.width /2;
 centerY = canvas.height /2;
 score = 0;
+highscore = 0;
 hit = 0;
 start = true;
 //overSpike = false;
@@ -116,6 +117,7 @@ function playerStats() { // Text for score & Testing / Troubleshooting
     //ctx.fillText("Player Y: " + (player.y + player.h), 140, 20, 100);
     //ctx.fillText("Is Player Free: " + player.free, 260, 20, 140);
     ctx.fillText("Score: " + score, 480, 20, 100);
+    ctx.fillText("High Score: " + highscore, 480, 40, 100);
     //ctx.fillText("Hit: " + hit, 480, 60, 160);
     //ctx.fillText("Spike Math: " + (Math.abs((5/4) * (spike.x - (player.x + (player.w/2)))) + spike.y), 20, 20, 100);
     //ctx.fillText("Spike X2: " + (spike.x + (spike.w/2)), (spike.x - spike.w), 80, 100);
@@ -135,8 +137,8 @@ function update() {
         drawSpike();
         moveSpike();
         playerStats();
+        updateHighscore();
         score++;
-
         if (score % 100 == 0) { spike.dx += 1/10}
         requestAnimationFrame(update);
     } else {
@@ -191,5 +193,21 @@ function keyUp(e) {
         player.dy += 5;
     }
 }
+
+function updateHighscore() {
+    if (highscore < score) { // Update Highscore when score surpasses it
+        highscore = score;
+
+        if (localStorage.getItem("highscore") === null) { // Remember user highscore in local storage
+            localStorage.setItem("highscore", highscore);
+        } else if (localStorage.getItem("highscore") < highscore) { // Update local storage high score
+            localStorage.setItem("highscore", highscore);
+        } else if (localStorage.getItem("highscore") > highscore) { // Update high score on reset
+            highscore = localStorage.getItem("highscore"); 
+        }
+    }
+
+}
+
 
 update();
