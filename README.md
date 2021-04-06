@@ -5,7 +5,7 @@ Tried recreating the chrome dinosaur game by memory &amp; with JS canvas. There 
 
 - [x] Added collision between Player, spike, and floor
 - [x] Make spikes speed up over time
-- [ ] Added a highscore counter
+- [x] Added a highscore counter
 - [ ] Added random spike spawning & spike variants
 
 ### Thought Process:
@@ -31,3 +31,7 @@ The next part of this is "conditional 3" which is the following if statement:  `
 ![Image of the Desmos Graph Linked Above](https://github.com/KaytchJam/Simple-JS-Sidescroller-Chrome-Dino-/blob/main/readme-assets/spike_graph.PNG?raw=true)
 
 Since the Y-axis of the JS Canvas is inverted (Y increases as you go down along the canvas), there was no need to multiply the function by negative 1. Through this, I was able to get the Y value at every point of the spike and compare it to the current Y value (taking height into consideration) of the player. If the Y value of the spike is less than that of the player at `spike.x - (player.x + player.w/2)` then they have collided, and a hit has occured.
+
+#### Gravity & Jumping
+
+
