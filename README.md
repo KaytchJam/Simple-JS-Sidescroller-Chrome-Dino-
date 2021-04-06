@@ -60,9 +60,20 @@ function playerPosition() {
     player.y += player.dy; // each frame player.dy is being added to player.y
 
     if (player.free) {
-        player.dy += player.grav * 1.5; 
+        player.dy += player.grav; // player.grav = .75
     }
 }
 ```
 
-The jump() function is straightforward, and works by setting `player.dy = (-1) * player.speed; `. This new `player.dy` value is now equal to -15 , and is "added" to our `player.y` value each frame through the `playerPosition()` function. As said earlier, since the y-axis of the JS canvaas is inverted, subtracting from our y-values makes us go up and adding to our y-value makes us go down instead. Another functi
+The `jump()` function is straightforward, and works by setting `player.dy = (-1) * player.speed; `. This new `player.dy` value is now equal to *-15* , and is "added" to our `player.y` value each frame through the `playerPosition()` function. As said earlier, since the y-axis of the JS canvas is inverted, subtracting from our y-values makes us go up and adding to our y-value makes us go down instead. In the **collision detection** section, it was established that the `free` function checks if the user is in the air or on the ground. Using this, we can add a form of gravity to the player when they're in the air. The if-statement in `playerPosition()` does just this; it first checks if the player is "free" (in the air), and if they are, every frame the constant `player.grav` will be added to `player.dy` and take the player downwards. 
+
+In a similar fashion, `fastfall()` makes use of the `free` state to identify when it can be used or not. 
+
+``` javascript
+function fastFall() {
+    if (player.free) { // If the player is in the air, they can fast fall
+        player.dy += 20
+    }
+}
+```
+When holding down when `free`, you'll immediately boost downwards. Functionally, it works the same as the the gravity mentioned before, where a constant is added to `player.dy` for however long they're in the air. In this case, however, the difference between `grav` and `ffall` is substantial, with the grav constant being *.75* and the ffall constant being *20*.
