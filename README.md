@@ -32,6 +32,37 @@ The next part of this is "conditional 3" which is the following if statement:  `
 
 Since the Y-axis of the JS Canvas is inverted (Y increases as you go down along the canvas), there was no need to multiply the function by negative 1. Through this, I was able to get the Y value at every point of the spike and compare it to the current Y value (taking height into consideration) of the player. If the Y value of the spike is less than that of the player at `spike.x - (player.x + player.w/2)` then they have collided, and a hit has occured.
 
-#### Gravity & Jumping
+``` javascript
+if (player.y + player.h >= floor.y) { // Checks if player is on ground & keeps them grounded
+        player.free = false;
+        player.y = floor.y - player.h
+}
 
+if (player.y + player.h < floor.y) { // Check if the player is in the air
+        player.free = true;
+}
+```
 
+The following lines of code check if the player is on the ground or in the air respectively. The first if statement checks if the `player.y + player.h` is greater than or equivalent to the y-value of the floor or not. If it's true, the `free` variable is set to false (indicating that the player is not airborne), and the player's y-value is set equal to that of the floor. This ensures that no matter what speed the player approaches the ground, they will never go past it. Additionally, we now have a state that can let us differentiate between when the player is in the air or on the ground ( `free` ) which will be important for the next section.
+
+#### Gravity & Air Movement
+
+Air movement is done through the `jump()` function, the `free` variable, the `fastfall` variable, and the `player.grav` variables. 
+
+``` javascript
+function jump() {
+    if (!player.free) {
+        player.dy = -player.speed; // player.speed = 15
+    }
+}
+
+function playerPosition() {
+    player.y += player.dy; // each frame player.dy is being added to player.y
+
+    if (player.free) {
+        player.dy += player.grav * 1.5; 
+    }
+}
+```
+
+The jump() function is straightforward, and works by setting `player.dy = (-1) * player.speed; `. This new `player.dy` value is now equal to -15 , and is "added" to our `player.y` value each frame through the `playerPosition()` function. As said earlier, since the y-axis of the JS canvaas is inverted, subtracting from our y-values makes us go up and adding to our y-value makes us go down instead. Another functi
