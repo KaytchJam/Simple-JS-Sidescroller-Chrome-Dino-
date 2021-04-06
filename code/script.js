@@ -26,7 +26,7 @@ const player = {
     y: 200,
     speed: 15,
     dy: 0,
-    grav: .5,
+    grav: .75,
     free: false
 };
 
@@ -75,7 +75,7 @@ function playerPosition() {
     player.y += player.dy;
 
     if (player.free) {
-        player.dy += player.grav * 1.5 ; // Gravity & coefficient of 1.5
+        player.dy += player.grav; // Gravity & coefficient of 1.5
     }
 
     collideDetect();
