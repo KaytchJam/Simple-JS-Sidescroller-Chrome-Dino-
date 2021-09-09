@@ -6,7 +6,7 @@ Tried recreating the chrome dinosaur game by memory &amp; with JS canvas. There 
 - [x] Added collision between Player, spike, and floor
 - [x] Make spikes speed up over time
 - [x] Added a highscore counter
-- [ ] Added random spike spawning & spike variants
+- [ ] Added variation in spike spawning & spike variants
 
 ### Thought Process:
 
